@@ -12,3 +12,6 @@ For example:
 
 What is the **position** of the character that causes Santa to first enter the
 basement?
+
+Although it hasn't changed, you can still
+[get your puzzle input](../part1/input.txt).

@@ -20,3 +20,6 @@ For example:
   of `14` feet.
 
 How many total **feet of ribbon** should they order?
+
+Although it hasn't changed, you can still
+[get your puzzle input](../part1/input.txt).
