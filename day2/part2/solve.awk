@@ -1,7 +1,8 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-    FS = "x" # input lines are like "1x2x3"
+    # input lines are like "1x2x3"
+    FS = "x"
 }
 
 {

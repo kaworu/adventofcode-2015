@@ -1,7 +1,8 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-    FS = "" # split the input into one field per character.
+    # split the input into one field per character.
+    FS = ""
     THE_BASEMENT = -1
 }
 
