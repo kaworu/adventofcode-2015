@@ -2,18 +2,18 @@
 
 BEGIN {
     # split the input into one field per character.
-    FS = ""
+    FS = "";
 }
 
 {
     for (i = 1; i <= NF; i++) {
         if ($i == "(")
-            floor++
+            floor++;
         else if ($i == ")")
-            floor--
+            floor--;
     }
 }
 
 END {
-    print floor
+    print floor;
 }
