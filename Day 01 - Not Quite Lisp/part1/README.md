@@ -31,4 +31,4 @@ For example:
 
 To **what floor** do the instructions take Santa?
 
-To begin, get your [puzzle input](input.txt).
+To begin, [get your puzzle input](input.txt).

@@ -23,6 +23,6 @@ For example:
 All numbers in the elves' list are in feet. How many total **square feet of
 wrapping paper** should they order?
 
-To begin, get your [puzzle input](input.txt).
+To begin, [get your puzzle input](input.txt).
 
 [cuboid]: https://en.wikipedia.org/wiki/Cuboid#Rectangular_cuboid

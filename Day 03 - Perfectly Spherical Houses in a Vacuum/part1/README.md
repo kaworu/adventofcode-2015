@@ -21,4 +21,4 @@ For example:
 - `^v^v^v^v^v` delivers a bunch of presents to some very lucky children at only
   `2` houses.
 
-To begin, get your [puzzle input](input.txt).
+To begin, [get your puzzle input](input.txt).
