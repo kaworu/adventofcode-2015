@@ -38,3 +38,10 @@ string code `(2 + 5 + 10 + 6 = 23)` minus the total number of characters in
 memory for string values `(0 + 3 + 7 + 1 = 11)` is `23 - 11 = 12`.
 
 To begin, [get your puzzle input](input.txt).
+
+
+[C]: https://en.wikipedia.org/wiki/Escape_sequences_in_C
+[JavaScript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+[Perl]: http://perldoc.perl.org/perlop.html#Quote-and-Quote-like-Operators
+[Python]: https://docs.python.org/2.0/ref/strings.html
+[PHP]: http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
