@@ -14,7 +14,6 @@ BEGIN {
 	dest = $3;
 	# x & 0xffff == x
 	operation[dest]  = "AND" SUBSEP src SUBSEP 65535; # 0xffff
-	line[dest] = NR SUBSEP $0; # debug
 }
 
 # unary op
@@ -23,7 +22,6 @@ BEGIN {
 	dest = $4;
 	# x ^ 0xffff == ~x
 	operation[dest]  = "XOR" SUBSEP src SUBSEP 65535; # 0xffff
-	line[dest] = NR SUBSEP $0; # debug
 }
 
 # binary op
@@ -33,34 +31,33 @@ BEGIN {
 	rhs  = $3;
 	dest = $5;
 	operation[dest]  = op SUBSEP lhs SUBSEP rhs;
-	line[dest] = NR SUBSEP $0; # debug
 }
 
 END {
 	a = solve("a");
+	# reset the signals,
 	delete signal;
+	# set the signal b to previously computed a,
 	signal["b"] = a;
+	# and solve again.
 	print solve("a");
 }
 
-function solve(x, dbg, expr, rhs, lhs) {
+function solve(x, expr, rhs, lhs) {
 	if (x ~ /[0-9]+/)
 		return int(x);
+	# if we already know the signal for x we don't need to compute it.
 	if (signal[x])
 		return signal[x];
-	split(line[x], dbg, SUBSEP);
-#	for (i = 0; i < indent; i++)
-#		printf " ";
-#	printf "solve(%s):%d: %s\n", x, dbg[1], dbg[2];
 	split(operation[x], expr, SUBSEP);
-#	indent += 1;
+	# expr is now like ["AND", "42", "y"]
 	lhs = solve(expr[2]);
 	rhs = solve(expr[3]);
-#	indent -= 1;
 	signal[x] = eval(lhs, expr[1], rhs);
 	return signal[x];
 }
 
+# actually evaluate the result of the operator op applied to lhs and rhs.
 function eval(lhs, op, rhs) {
 	if (op == "AND")
 		return bw_and(lhs, rhs);
