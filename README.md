@@ -14,7 +14,7 @@ After solving the firsts two or three puzzle, I thought that AWK would be an
 ideal language. The puzzle input is (usually) to be parsed either line-by-line
 or sometimes character-by-character; AWK excel at both.
 
-Then [day 4](Day 04 - The Ideal Stocking Stuffer) required to compute *a lot*
+Then _Day 04 - The Ideal Stocking Stuffer_ required to compute *a lot*
 of MD5 hashes and it became quite challenging due to AWK's limitations. Using
 pipe has serious performance and portability impact, [dynamic extensions][] is
 limited to Gawk and greatly limit usability. Implementing MD5 in pure AWK is
