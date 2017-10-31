@@ -41,7 +41,7 @@ For example:
 * The next password after `abcdefgh` is `abcdffaa`.
 
 * The next password after `ghijklmn` is `ghjaabcc`, because you eventually skip
-  all the passwords that start with `ghi...`, since i is not allowed.
+  all the passwords that start with `ghi...`, since `i` is not allowed.
 
 Given Santa's current password (your puzzle input), what should his **next
 password** be?
