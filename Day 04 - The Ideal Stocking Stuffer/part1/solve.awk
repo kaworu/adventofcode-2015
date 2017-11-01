@@ -242,14 +242,12 @@ function bw_xor(x, y) {
 }
 
 # from https://www.gnu.org/software/gawk/manual/html_node/Ordinal-Functions.html
-function _ord_init(    i)
-{
+function _ord_init(    i) {
 	for (i = 0; i < 256; i++)
 		_ord_[sprintf("%c", i)] = i;
 }
 
-function ord(s)
-{
+function ord(s) {
 	# only first character is of interest
 	return _ord_[substr(s, 1, 1)];
 }

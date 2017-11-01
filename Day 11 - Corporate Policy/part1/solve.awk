@@ -15,15 +15,14 @@ BEGIN {
 
 END {
 	while (!(has_a_straight_of_three() && has_two_pairs()))
-		advance(puzzle);
+		advance();
 	for (i = 1; i <= puzzle_length; i++)
 		printf("%c", puzzle[i]);
 	printf("\n");
 }
 
 # first rule.
-function has_a_straight_of_three(i, n)
-{
+function has_a_straight_of_three(    i, n) {
 	n = 1;
 	for (i = 2; i <= puzzle_length; i++) {
 		if (puzzle[i] != puzzle[i - 1] + 1)
@@ -35,8 +34,7 @@ function has_a_straight_of_three(i, n)
 }
 
 # third rule.
-function has_two_pairs(i, n)
-{
+function has_two_pairs(    i, n) {
 	for (i = 2; i <= puzzle_length; i++) {
 		if (puzzle[i] == puzzle[i - 1]) {
 			i++;
@@ -47,33 +45,28 @@ function has_two_pairs(i, n)
 	return 0;
 }
 
-function advance(puzzle, orda, i)
-{
+function advance(    i) {
 	# iter over the puzzle from the last element to the first
 	for (i = puzzle_length; i > 0; i--) {
 		puzzle[i] = inc[puzzle[i]];
 		if (puzzle[i] == ord("a")) # we did wrap.
 			continue;
-		return i;
+		return;
 	}
 }
 
 # from https://www.gnu.org/software/gawk/manual/html_node/Ordinal-Functions.html
-function _ord_init(    i)
-{
+function _ord_init(    i) {
 	for (i = 0; i < 256; i++)
 		_ord_[sprintf("%c", i)] = i;
 }
 
-function ord(s)
-{
+function ord(s) {
 	# only first character is of interest
-	#return _ord_[substr(s, 1, 1)];
-	return _ord_[s];
+	return _ord_[substr(s, 1, 1)];
 }
 
-function _inc_init()
-{
+function _inc_init() {
 	inc[ord("a")] = ord("b");
 	inc[ord("b")] = ord("c");
 	inc[ord("c")] = ord("d");

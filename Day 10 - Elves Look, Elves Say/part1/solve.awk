@@ -11,9 +11,7 @@ END {
 	print length(puzzle);
 }
 
-function look_and_say(prev,
-		nchars, chars, c, n, seq, i)
-{
+function look_and_say(prev,    nchars, chars, c, n, seq, i) {
 	nchars = split(prev, chars, "");
 	c = chars[1];
 	n = 1;

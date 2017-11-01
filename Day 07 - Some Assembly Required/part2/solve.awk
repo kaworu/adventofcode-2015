@@ -43,7 +43,7 @@ END {
 	print solve("a");
 }
 
-function solve(x, expr, rhs, lhs) {
+function solve(x,    expr, rhs, lhs) {
 	if (x ~ /[0-9]+/)
 		return int(x);
 	# if we already know the signal for x we don't need to compute it.

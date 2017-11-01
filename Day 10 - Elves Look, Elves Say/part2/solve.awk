@@ -19,9 +19,7 @@ END {
 	print evolved_length(id);
 }
 
-function evolved_length(id, generation,
-		n, atoms, i, len)
-{
+function evolved_length(id, generation,    n, atoms, i, len) {
 	if (generation == 50)
 		return id2len[id];
 
@@ -34,8 +32,7 @@ function evolved_length(id, generation,
 }
 
 # see http://www.njohnston.ca/2010/10/a-derivation-of-conways-degree-71-look-and-say-polynomial/
-function _cosmo_init()
-{
+function _cosmo_init() {
 	# sequence to index
 	seq2id["1112"]                                       =  1;
 	seq2id["1112133"]                                    =  2;

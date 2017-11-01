@@ -25,7 +25,7 @@ END {
 	print count;
 }
 
-function square(from, to, light) {
+function square(from, to,    light) {
 	split(from, light, /,/);
 	tlx = int(light[1]); # top-left x
 	tly = int(light[2]); # top-left y
