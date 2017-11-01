@@ -4,47 +4,33 @@
 	from = $1;
 	to   = $3;
 	dist = $5;
-	unvisited[from] = unvisited[to] = 1;
+	to_visit[from] = to_visit[to] = 1;
 	distances[from, to] = distances[to, from] = int(dist);
 }
 
 END {
-	for (city in unvisited)
+	for (_ in to_visit)
 		ncities++;
-
-	for (start in unvisited) {
-		for (city in unvisited)
-			unvisited[city] = (city != start);
-		walk(start, 0, start, unvisited, ncities - 1);
-	}
-
-	shortest = 0;
-	for (path in distances) {
-		nhops = split(path, _, SUBSEP);
-		if (nhops != ncities)
-			continue;
-		if (!shortest || distances[path] < distances[shortest])
-			shortest = path;
-	}
-
-	printf("%d\n", distances[shortest]);
+	print tsp(to_visit, ncities);
 }
 
-function walk(path, len, hop, unvisited, nunvisited,
-	      next_city, next_path, next_len, c, next_unvisited)
-{
-	if (nunvisited == 0)
-		return;
+function tsp(to_visit, to_visit_len, previous, len,
+	      city, c, next_to_visit, l, min_len) {
+	if (to_visit_len == 0)
+		return len;
 
-	for (next_city in unvisited) {
-		if (!unvisited[next_city])
+	for (city in to_visit) {
+		if (!to_visit[city])
 			continue;
-		next_path = path SUBSEP next_city;
-		next_len = distances[next_path] = len + distances[hop, next_city];
-		# build next_unvisited by conceptually "pop"ing next_city from
-		# unvisited
-		for (c in unvisited)
-			next_unvisited[c] = (c == next_city ? 0 : unvisited[c]);
-		walk(next_path, next_len, next_city, next_unvisited, nunvisited - 1);
+		# build next_to_visit by conceptually "pop"ing city from
+		# to_visit
+		for (c in to_visit)
+			next_to_visit[c] = (c == city ? 0 : to_visit[c]);
+		if (!previous)
+			l = tsp(next_to_visit, to_visit_len - 1, city);
+		else
+			l = tsp(next_to_visit, to_visit_len - 1, city, len + distances[previous, city]);
+		min_len = (!min_len || l < min_len ? l : min_len);
 	}
+	return min_len;
 }
