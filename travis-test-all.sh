@@ -7,10 +7,9 @@ set -e
 : ${AWKCMD:="/usr/bin/env awk"}
 echo "Testing using $AWKCMD"
 
-DIR=$(dirname "$0")
-DAYS=$(find "$DIR" -maxdepth 1 -type d -name 'Day [0-9]*')
-
-echo "$DAYS" | sort | while read DAY; do
+# run a test for a give day directory.
+travis() {
+    DAY=$1
     for part in part1 part2; do
         echo -n "===>" $(basename "$DAY") "($part)... "
         dir="${DAY}/${part}"
@@ -43,4 +42,19 @@ echo "$DAYS" | sort | while read DAY; do
             echo ok.
         fi
     done
-done
+}
+
+# if we get some arguments on ARGV, we're asked to run only a subset of the
+# days.
+if [ $# -ne 0 ]; then
+    for path in "$@"; do
+        travis "$path"
+    done
+else
+    # test all the days directories.
+    DIR=$(dirname "$0")
+    DAYS=$(find "$DIR" -maxdepth 1 -type d -name 'Day [0-9]*')
+    echo "$DAYS" | sort | while read day; do
+        travis "$day"
+    done
+fi
