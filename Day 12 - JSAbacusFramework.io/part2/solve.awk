@@ -18,11 +18,11 @@
 #   printf "%s\n" Filepath [Filepath...] "" | awk [-v Option="value"] [-v Option="value"...] -f JSON.awk
 # Options: (default value in braces)
 #   BRIEF=0  don't print non-leaf nodes {1}
-#   STREAM=0  don't print to stdout, and store jpaths in JPATHS[] {1}
+#   STREAM=0  don't print to stdout, and store jpaths in JPATHS[] {0}
 
 BEGIN { #{{{
 	if (BRIEF == "") BRIEF=1 # parse() omits printing non-leaf nodes
-	if (STREAM == "") STREAM=1; # parse() omits stdout and stores jpaths in JPATHS[]
+	if (STREAM == "") STREAM=0; # parse() omits stdout and stores jpaths in JPATHS[]
 	# for each input file:
 	#   TOKENS[], NTOKENS, ITOKENS - tokens after tokenize()
 	#   JPATHS[], NJPATHS - parsed data (when STREAM=0)
