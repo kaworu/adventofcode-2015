@@ -5,6 +5,7 @@ set -e
 # this should be injected by TravisCI's env.matrix, but we set a default in
 # case we want to run the script by hand.
 : ${AWKCMD:="/usr/bin/env awk"}
+echo "Testing using $AWKCMD"
 
 DIR=$(dirname "$0")
 DAYS=$(find "$DIR" -maxdepth 1 -type d -name 'Day [0-9]*')
