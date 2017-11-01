@@ -7,13 +7,11 @@ addons:
     packages:
     - original-awk
     - gawk
-    - busybox-static
     - mawk
 
 install:
   - original-awk --version
   - gawk --version | head -n 1
-  - busybox | head -n 1
   - mawk -W version 2>&1 | head -n 1
 
 script: ./travis-test-all.sh
@@ -22,5 +20,4 @@ env:
   matrix:
     - AWKCMD=original-awk
     - AWKCMD=gawk
-    - AWKCMD="busybox awk"
     - AWKCMD=mawk
