@@ -19,10 +19,10 @@ function look_and_say(prev,    nchars, chars, c, n, seq, i) {
 		if (chars[i] == c) {
 			n++;
 		} else {
-			seq = sprintf("%s%d%s", seq, n, c);
+			seq = seq n c;
 			c = chars[i];
 			n = 1;
 		}
 	}
-	return sprintf("%s%d%s", seq, n, c);
+	return seq = seq n c;
 }
