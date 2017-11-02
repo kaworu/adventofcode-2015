@@ -14,7 +14,9 @@ https://adventofcode.com puzzles solutions in [AWK][].
 
 After solving the firsts two or three puzzle, I thought that AWK would be an
 ideal language. The puzzle input is (usually) to be parsed either line-by-line
-or sometimes character-by-character; AWK excel at both.
+or sometimes character-by-character; AWK excel at both. As a results, solutions
+contain very few parsing related lines of code and can be focused on the
+problem.
 
 ## And?
 
@@ -29,18 +31,21 @@ Also puzzles gets harder as days goes by, to the point that finding elegant AWK
 solution become really challenging. The most outstanding limitations are:
 
 - There are very few built-in functions and (almost) all of them are string
-  processing functions. Hasn't been a big issue since most AOC challenges are
+  processing functions. Hasn't been a big issue since most challenges are
   mathematical puzzles.
+
 - Only two scalar types (if we omit regexp): strings and Double-precision
-  floating-point numbers. This makes bitwise operations a bit tricky because
-  they need to be implemented "by hand".
+  floating-point numbers. This makes stuff usually ubiquitous in "general
+  purpose" programming languages (e.g. bitwise operations) a bit tricky.
+
 - The only composite type — associative arrays — is not recursive (values are
   limited to numbers or strings). Also it is not possible to return associative
   arrays from functions. Because of this, it is often hard to implement
-  solutions that can solve the general case problem as they can require an
+  solutions able to solve the general case problem as they can require an
   "additional" dimension (e.g. 4 lines input vs arbitrary lines input). So far
-  I've used multiple array subscripts (which is really only syntactic sugar)
-  and function recursion (basically using the call stack as a dimension).
+  I've been able to use multiple array subscripts (which is really only
+  syntactic sugar) and function recursion (basically using the call stack as a
+  dimension) to work around this issue.
 
 [AWK]: https://en.wikipedia.org/wiki/AWK
 [dynamic extensions]: https://www.gnu.org/software/gawk/manual/html_node/Dynamic-Extensions.html
