@@ -16,10 +16,11 @@ travis() {
         solve="${dir}/solve.awk"
         answer="${dir}/answer.md"
         input="${dir}/../part1/input.txt"
+        skip="${dir}/.travis.skip"
         # some tests take too long, we put .travis.skip file into them in order
         # to avoid running them.
-        if [ -f "${dir}/.travis.skip" ]; then
-            echo skipping.
+        if [ -f "$skip" ]; then
+            echo -n "skipping: " && cat "$skip"
         elif [ ! -f "$solve" -o ! -f "$answer" -o ! -f "$input" ]; then
             echo incomplete.
             exit 1
@@ -31,7 +32,9 @@ travis() {
                 echo can\'t parse $(basename "$answer")
                 exit 1
             fi
+            before=$(date "+%s")
             actual=$($AWKCMD -f "$solve" "$input")
+            after=$(date "+%s")
             if [ $? -ne 0 ]; then
                 echo awk failed.
                 exit 1
@@ -39,7 +42,11 @@ travis() {
                 echo "bad result, expected ${expected} but got ${actual}"
                 exit 1
             fi
-            echo ok.
+            msg="ok"
+            # -1 because we might have started at the "end of a second"
+            sec=$((after - before - 1))
+            [ $sec -gt 0 ] && msg="${msg} (${sec}s)"
+            echo "$msg"
         fi
     done
 }
