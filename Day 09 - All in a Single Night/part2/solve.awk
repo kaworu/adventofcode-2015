@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 
-/[a-zA-z]+ to [a-zA-z]+ = [0-9]+/ {
+/[A-Za-z]+ to [A-Za-z]+ = [0-9]+/ {
 	from = $1;
 	to   = $3;
 	dist = $5;
