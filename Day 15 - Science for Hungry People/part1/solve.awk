@@ -15,7 +15,7 @@ END {
 }
 
 function best_score(teaspoons, ingredients, ningredients, c, d, f, t,
-		    i, ingredient, ci, di, fi, ti, s, best) {
+		    i, ingredient, next_ingredients, ci, di, fi, ti, s, best) {
 	if (ningredients == 0) {
 		if (c <= 0 || d <= 0 || f <= 0 || t <= 0)
 			return 0;
@@ -24,7 +24,9 @@ function best_score(teaspoons, ingredients, ningredients, c, d, f, t,
 	}
 
 	ingredient = ingredients[ningredients];
-	delete ingredients[ningredients];
+	delete next_ingredients;
+	for (i = 1; i < ningredients; i++)
+		next_ingredients[i] = ingredients[i];
 
 	ci = capacity[ingredient];
 	di = durability[ingredient];
@@ -34,11 +36,10 @@ function best_score(teaspoons, ingredients, ningredients, c, d, f, t,
 	# if we're the last ingredient, just take all the teaspoons left.
 	for (i = (ningredients == 1 ? teaspoons : 0); i <= teaspoons; i++) {
 		s = best_score(teaspoons - i,
-		    ingredients, ningredients - 1,
+		    next_ingredients, ningredients - 1,
 		    c + ci * i, d + di * i, f + fi * i, t + ti * i);
 		best = (s > best ? s : best);
 	}
-	ingredients[ningredients] = ingredient;
 
 	return best;
 }

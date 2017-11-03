@@ -15,15 +15,18 @@ END {
 }
 
 function tsp(to_visit, to_visit_len, previous, len,
-	      city, l, max_len) {
+	      city, c, next_to_visit, l, max_len) {
 	max_len = len;
 	for (city in to_visit) {
-		delete to_visit[city];
+		delete next_to_visit;
+		for (c in to_visit) {
+			if (c != city)
+				next_to_visit[c] = 1;
+		}
 		if (!previous)
-			l = tsp(to_visit, to_visit_len - 1, city);
+			l = tsp(next_to_visit, to_visit_len - 1, city);
 		else
-			l = tsp(to_visit, to_visit_len - 1, city, len + distances[previous, city]);
-		to_visit[city] = 1;
+			l = tsp(next_to_visit, to_visit_len - 1, city, len + distances[previous, city]);
 		max_len = (l > max_len ? l : max_len);
 	}
 	return max_len;

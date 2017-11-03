@@ -15,17 +15,20 @@ END {
 }
 
 function tsp(to_visit, to_visit_len, previous, len,
-	      city, l, min_len) {
+	      city, c, next_to_visit, l, min_len) {
 	if (to_visit_len == 0)
 		return len;
 
 	for (city in to_visit) {
-		delete to_visit[city];
+		delete next_to_visit;
+		for (c in to_visit) {
+			if (c != city)
+				next_to_visit[c] = 1;
+		}
 		if (!previous)
-			l = tsp(to_visit, to_visit_len - 1, city);
+			l = tsp(next_to_visit, to_visit_len - 1, city);
 		else
-			l = tsp(to_visit, to_visit_len - 1, city, len + distances[previous, city]);
-		to_visit[city] = 1;
+			l = tsp(next_to_visit, to_visit_len - 1, city, len + distances[previous, city]);
 		min_len = (!min_len || l < min_len ? l : min_len);
 	}
 	return min_len;

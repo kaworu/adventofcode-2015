@@ -20,12 +20,16 @@ END {
 }
 
 function happiest(standing, nstanding, first, previous, change,
-	      person, c, max_change) {
+	      person, p, next_standing, c, max_change) {
 	if (nstanding == 0)
 		return change + happiness[first, previous];
 
 	for (person in standing) {
-		delete standing[person];
+		delete next_standing;
+		for (p in standing) {
+			if (p != person)
+				next_standing[p] = 1;
+		}
 		if (!first) {
 			# unlike TSP we don't have to try every permutations,
 			# we can start with any person. We could optimize
@@ -33,10 +37,9 @@ function happiest(standing, nstanding, first, previous, change,
 			#     <- A <-> B <-> C <-> D ->
 			# will yield the same result as
 			#     <- A <-> D <-> C <-> B ->
-			return happiest(standing, nstanding - 1, person, person);
+			return happiest(next_standing, nstanding - 1, person, person);
 		}
-		c = happiest(standing, nstanding - 1, first, person, change + happiness[previous, person]);
-		standing[person] = 1;
+		c = happiest(next_standing, nstanding - 1, first, person, change + happiness[previous, person]);
 		max_change = (c > max_change ? c : max_change);
 	}
 	return max_change;
