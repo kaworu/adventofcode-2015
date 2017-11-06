@@ -30,21 +30,20 @@ though).
 Also puzzles gets harder as days goes by, to the point that finding elegant AWK
 solution become really challenging. The most outstanding limitations are:
 
-- There are very few built-in functions and (almost) all of them are string
+- **There are very few built-in functions** and (almost) all of them are string
   processing functions. Hasn't been a big issue since most challenges are
   mathematical puzzles.
 
-- Only two scalar types (if we omit regexp): strings and Double-precision
-  floating-point numbers. This makes some stuff usually ubiquitous in
-  "general purpose" programming languages (e.g. bitwise operations) a bit
-  tricky.
+- **Only two scalar types** (if we omit regexp): strings and Double-precision
+  floating-point numbers. This makes some stuff usually ubiquitous in "general
+  purpose" programming languages (e.g. bitwise operations) a bit tricky.
 
-- It is not possible to return associative arrays from functions. This can be
-  worked around by passing an array as parameter that is to be modified by the
-  function.
+- **It is not possible to return associative arrays from functions**. This can
+  be worked around by passing an array as parameter that is to be modified by
+  the function.
 
-- The only composite type — associative arrays — is not recursive (values are
-  limited to numbers or strings). Because of this, it is often hard to
+- **The only composite type — associative arrays — is not recursive** (values
+  are limited to numbers or strings). Because of this, it is often hard to
   implement solutions able to solve the general case problem as they can
   require an "additional" dimension (e.g. 4 lines input vs arbitrary lines
   input). So far I've been able to use multiple array subscripts (which is
