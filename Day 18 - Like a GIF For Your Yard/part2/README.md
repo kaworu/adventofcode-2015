@@ -1,4 +1,4 @@
---- Part Two ---
+## --- Part Two ---
 
 You flip the instructions over; Santa goes on to point out that this is all
 just an implementation of [Conway's Game of Life][game-of-life]. At least, it
