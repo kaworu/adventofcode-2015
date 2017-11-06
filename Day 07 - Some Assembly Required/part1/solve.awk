@@ -47,8 +47,7 @@ function solve(x,    expr, rhs, lhs) {
 	# expr is now like ["AND", "42", "y"]
 	lhs = solve(expr[2]);
 	rhs = solve(expr[3]);
-	signal[x] = eval(lhs, expr[1], rhs);
-	return signal[x];
+	return signal[x] = eval(lhs, expr[1], rhs);
 }
 
 # actually evaluate the result of the operator op applied to lhs and rhs.
