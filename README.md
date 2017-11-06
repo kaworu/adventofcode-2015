@@ -35,17 +35,21 @@ solution become really challenging. The most outstanding limitations are:
   mathematical puzzles.
 
 - Only two scalar types (if we omit regexp): strings and Double-precision
-  floating-point numbers. This makes stuff usually ubiquitous in "general
-  purpose" programming languages (e.g. bitwise operations) a bit tricky.
+  floating-point numbers. This makes some stuff usually ubiquitous in
+  "general purpose" programming languages (e.g. bitwise operations) a bit
+  tricky.
+
+- It is not possible to return associative arrays from functions. This can be
+  worked around by passing an array as parameter that is to be modified by the
+  function.
 
 - The only composite type — associative arrays — is not recursive (values are
-  limited to numbers or strings). Also it is not possible to return associative
-  arrays from functions. Because of this, it is often hard to implement
-  solutions able to solve the general case problem as they can require an
-  "additional" dimension (e.g. 4 lines input vs arbitrary lines input). So far
-  I've been able to use multiple array subscripts (which is really only
-  syntactic sugar) and function recursion (basically using the call stack as a
-  dimension) to work around this issue.
+  limited to numbers or strings). Because of this, it is often hard to
+  implement solutions able to solve the general case problem as they can
+  require an "additional" dimension (e.g. 4 lines input vs arbitrary lines
+  input). So far I've been able to use multiple array subscripts (which is
+  really only syntactic sugar) and function recursion (basically using the call
+  stack as a dimension) to work around this issue.
 
 [AWK]: https://en.wikipedia.org/wiki/AWK
 [dynamic extensions]: https://www.gnu.org/software/gawk/manual/html_node/Dynamic-Extensions.html
