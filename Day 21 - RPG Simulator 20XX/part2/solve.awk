@@ -66,7 +66,10 @@ BEGIN {
 END {
 	# the logic is complex, the space is small, we play once. Let's
 	# bruteforce this. I tried something clever before this one, it worked
-	# but was an order of magnitude more complex.
+	# but was an order of magnitude more complex. It was based on the
+	# insight is that since the boss's hp is the same us,as long as the
+	# "at least one damage" rule doesn't come into play, only the amount
+	# of stats matter (armor + damage).
 
 	# start weapon at 1, because we must have one.
 	for (weapon = 1; weapon <= nweapons; weapon++) {
