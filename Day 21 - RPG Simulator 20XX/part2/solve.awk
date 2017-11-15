@@ -67,9 +67,12 @@ END {
 	# the logic is complex, the space is small, we play once. Let's
 	# bruteforce this. I tried something clever before this one, it worked
 	# but was an order of magnitude more complex. It was based on the
-	# insight is that since the boss's hp is the same us,as long as the
-	# "at least one damage" rule doesn't come into play, only the amount
-	# of stats matter (armor + damage).
+	# insight is that since the boss's hp is the same us, as long as the
+	# "at least one damage" rule doesn't come into play, only the total
+	# amount of stats matter (armor + damage). We win as long as we have at
+	# least the same total amount of stats as the boss, and can pick the
+	# cheapest upgrades regardless of armor vs damage stats. Still, the
+	# rings make it though especially for part2.
 
 	# start weapon at 1, because we must have one.
 	for (weapon = 1; weapon <= nweapons; weapon++) {
