@@ -1,9 +1,9 @@
 ## --- Day 22: Wizard Simulator 20XX ---
 
 Little Henry Case decides that defeating bosses with
-[swords and stuff](../../Day 21 - RPG Simulator 20XX/part1/README.md)
-is boring. Now he's playing the game with a wizard. Of course, he gets stuck on
-another boss and needs your help again.
+[swords and stuff](https://adventofcode.com/2015/day/21) is boring. Now he's
+playing the game with a wizard. Of course, he gets stuck on another boss and
+needs your help again.
 
 In this version, combat still proceeds with the player and the boss taking
 alternating turns. The player still goes first. Now, however, you don't get any
