@@ -46,9 +46,9 @@ solution become really challenging. The most outstanding limitations are:
   are limited to numbers or strings). Because of this, it is often hard to
   implement solutions able to solve the general case problem as they can
   require an "additional" dimension (e.g. 4 lines input vs arbitrary lines
-  input). So far I've been able to use multiple array subscripts (which is
-  really only syntactic sugar) and function recursion (basically using the call
-  stack as a dimension) to work around this issue.
+  input). To work around this issue I've used multiple array subscripts (which
+  is really only syntactic sugar), function recursion (basically using the call
+  stack "as a dimension"), and serialization to string.
 
 [AWK]: https://en.wikipedia.org/wiki/AWK
 [dynamic extensions]: https://www.gnu.org/software/gawk/manual/html_node/Dynamic-Extensions.html
