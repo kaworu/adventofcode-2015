@@ -3,7 +3,7 @@
 /[0-9]+/ {
 	c = int($1);
 	# insert c into containers maintaining a descending order.
-	for (i = ncontainers++; i > 0 && containers[i] < c; i--)
+	for (i = NR - 1; i > 0 && containers[i] < c; i--)
 		containers[i + 1] = containers[i];
 	containers[i + 1] = c;
 }
@@ -13,7 +13,7 @@ END {
 }
 
 function fill(liters, i,    l, count) {
-	while (++i <= ncontainers) {
+	while (++i <= NR) {
 		l = liters - containers[i];
 		if (l == 0)
 			count++;

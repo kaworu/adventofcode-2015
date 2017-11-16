@@ -11,11 +11,11 @@ BEGIN {
 	flavor[ingredient]     = int($7);
 	texture[ingredient]    = int($9);
 	calories[ingredient]   = int($11);
-	ingredients[++ningredients] = ingredient;
+	ingredients[NR] = ingredient;
 }
 
 END {
-	print best_score(100, ingredients, ningredients);
+	print best_score(100, ingredients, NR);
 }
 
 function best_score(teaspoons, ingredients, ningredients, c, d, f, t, k,
