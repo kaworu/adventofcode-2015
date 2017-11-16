@@ -13,7 +13,7 @@ BEGIN {
 	src  = $1;
 	dest = $3;
 	# x & 0xffff == x
-	operation[dest]  = "AND" SUBSEP src SUBSEP 65535; # 0xffff
+	operation[dest]  = "AND" FS src FS 65535; # 0xffff
 }
 
 # unary op
@@ -21,7 +21,7 @@ BEGIN {
 	src  = $2;
 	dest = $4;
 	# x ^ 0xffff == ~x
-	operation[dest]  = "XOR" SUBSEP src SUBSEP 65535; # 0xffff
+	operation[dest]  = "XOR" FS src FS 65535; # 0xffff
 }
 
 # binary op
@@ -30,7 +30,7 @@ BEGIN {
 	op   = $2;
 	rhs  = $3;
 	dest = $5;
-	operation[dest]  = op SUBSEP lhs SUBSEP rhs;
+	operation[dest]  = op FS lhs FS rhs;
 }
 
 END {
@@ -49,7 +49,7 @@ function solve(x,    expr, rhs, lhs) {
 	# if we already know the signal for x we don't need to compute it.
 	if (signal[x])
 		return signal[x];
-	split(operation[x], expr, SUBSEP);
+	split(operation[x], expr);
 	# expr is now like ["AND", "42", "y"]
 	lhs = solve(expr[2]);
 	rhs = solve(expr[3]);
