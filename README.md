@@ -20,12 +20,11 @@ problem.
 
 ## And?
 
-Then _Day 04 - The Ideal Stocking Stuffer_ required to compute *a lot*
-of MD5 hashes and it became quite challenging due to AWK's limitations. Using
-pipe has serious performance and portability impact, [dynamic extensions][] is
-limited to Gawk and greatly limit usability. Implementing MD5 in pure AWK is
-tricky because it lacks bitwise operators (Gawk and busybox awk have them
-though).
+Then _Day 04 - The Ideal Stocking Stuffer_ required to compute *a lot* of MD5
+hashes and it became quite challenging due to AWK's limitations. Using pipe has
+serious performance and portability impact, [dynamic extensions][] is limited
+to Gawk and greatly limit usability. Implementing MD5 in pure AWK is tricky
+because it lacks bitwise operators (Gawk and busybox awk have them though).
 
 Also puzzles gets harder as days goes by, to the point that finding elegant AWK
 solution become really challenging. The most outstanding limitations are:
