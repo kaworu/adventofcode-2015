@@ -12,9 +12,9 @@ install:
   - original-awk --version
   - gawk --version | head -n 1
 
-script: ./travis-test-all.sh
+script: ./test-runner.sh
 
 env:
   matrix:
-    - AWKCMD=original-awk
-    - AWKCMD=gawk
+    - AWK=original-awk
+    - AWK=gawk

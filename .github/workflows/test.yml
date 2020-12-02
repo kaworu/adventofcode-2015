@@ -1,0 +1,17 @@
+on: [push, pull_request]
+name: Test
+jobs:
+  test:
+    strategy:
+      matrix:
+        awk: [gawk, original-awk]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install AWK
+      run: sudo apt-get -y install ${{ matrix.awk }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Test
+      run: ./test-runner.sh
+      env:
+        AWK: ${{ matrix.awk }}

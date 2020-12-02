@@ -2,13 +2,13 @@
 
 set -e
 
-# this should be injected by TravisCI's env.matrix, but we set a default in
+# this should be defined by the caller (CI runner), but we set a default in
 # case we want to run the script by hand.
-: ${AWKCMD:="/usr/bin/env awk"}
-echo "Testing using $AWKCMD"
+: ${AWK:="/usr/bin/env awk"}
+echo "Testing using $AWK"
 
 # run a test for a give day directory.
-travis() {
+ci() {
     DAY=$1
     for part in part1 part2; do
         echo -n "===>" $(basename "$DAY") "($part)... "
@@ -16,9 +16,9 @@ travis() {
         solve="${dir}/solve.awk"
         answer="${dir}/answer.md"
         input="${dir}/../part1/input.txt"
-        skip="${dir}/.travis.skip"
-        # some tests take too long, we put .travis.skip file into them in order
-        # to avoid running them.
+        skip="${dir}/.ci.skip"
+        # some tests take too long, we put .ci.skip file into them in order to
+        # avoid running them.
         if [ -f "$skip" ]; then
             echo -n "skipping: " && cat "$skip"
         elif [ ! -f "$solve" -o ! -f "$answer" -o ! -f "$input" ]; then
@@ -27,13 +27,13 @@ travis() {
         else
             # the answer file is always one line that looks like:
             #   Your puzzle answer was `foo`.
-            expected=$($AWKCMD '{gsub(/`|\./, "", $5); print $5}' "$answer")
+            expected=$($AWK '{gsub(/`|\./, "", $5); print $5}' "$answer")
             if [ -z "$expected" ]; then
                 echo can\'t parse $(basename "$answer")
                 exit 1
             fi
             before=$(date "+%s")
-            actual=$($AWKCMD -f "$solve" "$input")
+            actual=$($AWK -f "$solve" "$input")
             after=$(date "+%s")
             if [ $? -ne 0 ]; then
                 echo awk failed.
@@ -55,13 +55,13 @@ travis() {
 # days.
 if [ $# -ne 0 ]; then
     for path in "$@"; do
-        travis "$path"
+        ci "$path"
     done
 else
     # test all the days directories.
     DIR=$(dirname "$0")
     DAYS=$(find "$DIR" -maxdepth 1 -type d -name 'Day [0-9]*')
     echo "$DAYS" | sort | while read day; do
-        travis "$day"
+        ci "$day"
     done
 fi
