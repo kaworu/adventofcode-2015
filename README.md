@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kAworu/adventofcode-2015.svg?branch=master)](https://travis-ci.org/kAworu/adventofcode-2015)
+![Test](https://github.com/kAworu/adventofcode-2015/workflows/Test/badge.svg)
 
 # Advent of Code 2015
 
