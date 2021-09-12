@@ -30,6 +30,8 @@ END {
 }
 
 function animate(from, to, len,    x, ystart, ystop, y, n) {
+	# corners
+	to[1, 1] = to[1, len] = to[len, 1] = to[len, len] = 1;
 	for (x = 1; x <= len; x++) {
 		ystart = 1   + (x == 1 || x == len);
 		ystop  = len - (x == 1 || x == len);
